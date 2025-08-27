@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs"; // <-- Import ClerkProvider
 import Header from "@/components/shared/Header"; // <-- Import the Header
 import { ThemeProvider } from "@/components/shared/ThemeProvider"; // <-- Import
 import Footer from "@/components/shared/Footer"; // <-- Import Footer
@@ -26,22 +27,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en"  suppressHydrationWarning>
-      <body
+    <ClerkProvider>
+     <html lang="en"  suppressHydrationWarning>
+       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+       >
       
-        <ThemeProvider
+         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
-        >
-         <Header /> {/* <-- Add the Header here */}
-         <main>{children}</main>
-         <Footer />
-        </ThemeProvider>
-      </body>
-    </html>
+         >
+          <Header /> {/* <-- Add the Header here */}
+          <main>{children}</main>
+          <Footer />
+         </ThemeProvider>
+       </body>
+     </html>
+    </ClerkProvider>
   );
 }

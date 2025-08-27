@@ -1,3 +1,4 @@
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"; // <-- Import Clerk components
 import { Button } from "@/components/ui/button"; // Import the Button we just added
 import Link from "next/link";
 import React from "react";
@@ -12,8 +13,16 @@ const Header = () => {
         </Link>
 
         <div className="flex w-32 justify-end gap-3">
-          <Button>Login</Button>
           <ThemeToggle />
+          <SignedOut>
+            <Button asChild>
+              <Link href="/sign-in">Login</Link>
+            </Button>
+          </SignedOut>
+
+          <SignedIn>
+            <UserButton afterSignOutUrl="/" />
+          </SignedIn>
         </div>
       </div>
     </header>
