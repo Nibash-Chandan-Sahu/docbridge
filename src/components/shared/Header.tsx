@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button"; // Import the Button we just added
 import Link from "next/link";
 import React from "react";
+import { ThemeToggle } from "./ThemeToggle"; // <-- Import
 
 const Header = () => {
   return (
@@ -12,6 +13,7 @@ const Header = () => {
 
         <div className="flex w-32 justify-end gap-3">
           <Button>Login</Button>
+          <ThemeToggle />
         </div>
       </div>
     </header>
