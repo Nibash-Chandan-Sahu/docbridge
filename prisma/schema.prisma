@@ -13,3 +13,26 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
+
+// Define an enumeration for user roles
+enum Role {
+  PATIENT
+  DOCTOR
+  ADMIN
+  UNASSIGNED
+}
+
+// Define the User model
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  imageUrl  String?
+  role      Role     @default(UNASSIGNED)
+  credits   Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

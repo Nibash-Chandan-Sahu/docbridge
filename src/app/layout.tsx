@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs"; // <-- Import ClerkProvider
 import Header from "@/components/shared/Header"; // <-- Import the Header
 import { ThemeProvider } from "@/components/shared/ThemeProvider"; // <-- Import
 import Footer from "@/components/shared/Footer"; // <-- Import Footer
+import UserSync from "@/components/shared/UserSync";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,8 +41,10 @@ export default function RootLayout({
           disableTransitionOnChange
          >
           <Header /> {/* <-- Add the Header here */}
-          <main>{children}</main>
-          <Footer />
+          <UserSync>
+           <main>{children}</main>
+           <Footer />
+          </UserSync>
          </ThemeProvider>
        </body>
      </html>
